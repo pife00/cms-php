@@ -6,7 +6,7 @@
 </div>
 <div class="form-group">
 <label for="">Contraseña</label>
-<input name="usuario_contraseña" class="form-control" type="password" >
+<input name="usuario_clave" class="form-control" type="password" >
 </div>
 
 <div class="form-group">
@@ -20,7 +20,7 @@
 </div>
 
 <div class="form-group">
-<label for="">correo</label>
+<label for="">Correo</label>
 <input name="usuario_correo" class="form-control" type="email" >
 </div>
 
@@ -43,7 +43,7 @@
 <?php
 if(isset($_POST['EnviarNuevoUsuario'])){
     $SobreNombre = mysqli_real_escape_string($conexion, $_POST['usuario_sobre_nombre']);
-    $Contraseña = mysqli_real_escape_string($conexion,$_POST['usuario_contraseña']);
+    $Contraseña = mysqli_real_escape_string($conexion,$_POST['usuario_clave']);
     $Nombre = mysqli_real_escape_string($conexion,$_POST['usuario_nombre']);
     $Apellido = mysqli_real_escape_string($conexion,$_POST['usuario_apellido']);
     $Correo = mysqli_real_escape_string($conexion,$_POST['usuario_correo']);
@@ -56,7 +56,7 @@ if(isset($_POST['EnviarNuevoUsuario'])){
     $Contraseña = password_hash($Contraseña,PASSWORD_BCRYPT,array('cost'=>10));
 
     $Solicitud = mysqli_query($conexion,
-    "INSERT INTO usuarios (usuario_sobre_nombre,usuario_contraseña,usuario_nombre,usuario_apellido
+    "INSERT INTO usuarios (usuario_sobre_nombre,usuario_clave,usuario_nombre,usuario_apellido
     ,usuario_correo,usuario_imagen,usuario_rol)
     VALUES ('$SobreNombre','$Contraseña','$Nombre','$Apellido','$Correo','$Imagen','$Rol')");
     if(!$Solicitud){

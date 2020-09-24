@@ -26,6 +26,7 @@
                 ?>
                 <li><a href="admin">Administrador</a></li>
                 <li><a href="registro.php">Registro</a></li>
+                <li><a href="contacto.php">Contactos</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

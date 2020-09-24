@@ -7,7 +7,7 @@ if(isset($_GET['usuario_id'])){
    }else{
         $fila = mysqli_fetch_assoc($query);
         $SobreNombre = escape($conexion, $fila['usuario_sobre_nombre']);
-        $Contraseña = escape($conexion, $fila['usuario_contraseña']);
+        $Contraseña = escape($conexion, $fila['usuario_clave']);
         $Salt = escape($conexion, $fila['randSalt']);
         $Nombre =  escape ($conexion,$fila['usuario_nombre']);
         $Apellido = escape($conexion,$fila['usuario_apellido']);
@@ -24,7 +24,7 @@ if(isset($_GET['usuario_id'])){
 </div>
 <div class="form-group">
 <label for="">Contraseña</label>
-<input value="<?php echo $Contraseña ?>" type="password" name="usuario_contraseña" class="form-control"  >
+<input value="<?php echo $Contraseña ?>" type="password" name="usuario_clave" class="form-control"  >
 </div>
 
 <div class="form-group">
@@ -63,7 +63,7 @@ if(isset($_GET['usuario_id'])){
 if(isset($_POST['EnviarEditarUsuario'])){
     $ID = $IDParametro;
     $SobreNombre = escape($conexion, $_POST['usuario_sobre_nombre']);
-    $Contraseña = escape($conexion, $_POST['usuario_contraseña']);
+    $Contraseña = escape($conexion, $_POST['usuario_clave']);
     $Nombre = escape($conexion, $_POST['usuario_nombre']);
     $Apellido = escape($conexion, $_POST['usuario_apellido']);
     $Correo = escape($conexion, $_POST['usuario_correo']);
@@ -80,7 +80,7 @@ if(isset($_POST['EnviarEditarUsuario'])){
 
     $Solicitud = mysqli_query($conexion,"UPDATE usuarios SET 
     usuario_sobre_nombre='$SobreNombre', 
-    usuario_contraseña = '$Contraseña',
+    usuario_clave = '$Contraseña',
     usuario_nombre='$Nombre',
     usuario_apellido='$Apellido',
     usuario_correo='$Correo',

@@ -16,21 +16,23 @@ if (isset($_POST['UsuarioSesion'])) {
         $fila = mysqli_fetch_assoc($SolicitudSesion);
         $DB_usuario_id = $fila['usuario_id'];
         $DB_usuario = $fila['usuario_sobre_nombre'];
-        $DB_contraseña = $fila['usuario_contraseña'];
+        $DB_contraseña = $fila['usuario_clave'];
         $DB_randSalt = $fila['randSalt'];
         $DB_nombre = $fila['usuario_nombre'];
         $DB_apellido = $fila['usuario_apellido'];
         $DB_rol = $fila['usuario_rol'];
 
-       // $Contraseña = crypt($Contraseña,$DB_contraseña);
-         
-       if(password_verify($Contraseña,$DB_contraseña)){
+       
+        // echo $Contraseña ." ".$DB_contraseña;
+        if(password_verify($Contraseña,$DB_contraseña)){
             $_SESSION['usuario_id'] = $DB_usuario_id;
             $_SESSION['usuario'] = $DB_usuario;
             $_SESSION['usuario_nombre'] = $DB_nombre;
             $_SESSION['usuario_apellido'] = $DB_apellido;
             $_SESSION['usuario_rol'] = $DB_rol;
             header('location:../admin');
+        }else{
+            header('Location:../index.php');
         }
     }else{
         header('Location:../index.php');
