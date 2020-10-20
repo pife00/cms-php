@@ -14,16 +14,13 @@
             <tbody>
                 <!---Tabla de Categorias--->
                 <?php
-                $Comentarios = mysqli_query($conexion, 'SELECT * FROM usuarios');
+                $stmt = mysqli_prepare($conexion, 
+                "SELECT usuario_id,usuario_sobre_nombre,usuario_nombre,usuario_apellido,usuario_correo,usuario_imagen,usuario_rol FROM usuarios");
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt,$ID,$SobreNombre,$Nombre,$Apellido,$Correo,$Imagen,$Rol);
 
-                while ($fila = mysqli_fetch_assoc($Comentarios)) :
-                    $ID = $fila['usuario_id'];
-                    $SobreNombre = $fila['usuario_sobre_nombre'];
-                    $Nombre = $fila['usuario_nombre'];
-                    $Apellido = $fila['usuario_apellido'];
-                    $Correo = $fila['usuario_correo'];
-                    $Imagen = $fila['usuario_imagen'];
-                    $Rol = $fila['usuario_rol'];
+                while (mysqli_stmt_fetch($stmt)) :
+                   
                 ?>
 
                     <tr>

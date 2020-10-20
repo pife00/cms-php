@@ -13,19 +13,33 @@
             <?php
             if (isset($_GET['post_id'])) {
                 $ID = $_GET['post_id'];
+                $post_id = $ID;
+                $usuario = $_SESSION["usuario_id"];
+                echo $gusto = usuariolike($conexion, $post_id, $usuario);
+                
                 $solicitud = mysqli_query($conexion, "SELECT * FROM post WHERE post_id=$ID");
-                $Vistas = mysqli_query($conexion,
-                "UPDATE post SET post_numero_vistas = post_numero_vistas +1 WHERE post_id =$ID ");
+                //Visitas
+                $Vistas = mysqli_query(
+                    $conexion,
+                    "UPDATE post SET post_numero_vistas = post_numero_vistas +1 WHERE post_id =$ID "
+                );
+                //likes
+               // $Likes = mysqli_query($conexion, "SELECT post_id FROM likes WHERE post_id = '$post_id'");
+               // $numeroLikes = mysqli_num_rows($Likes);
+
                 $fila = mysqli_fetch_assoc($solicitud);
-                if(!$Vistas){
+                if (!$Vistas) {
                     die(mysqli_error($conexion));
                 }
+
 
                 $Titulo = $fila['post_titulo'];
                 $Autor = $fila['post_autor'];
                 $Fecha = $fila['post_fecha'];
                 $Imagen = $fila['post_imagen'];
                 $Contenido = $fila['post_contenido'];
+                $numeroLikes = $fila['likes'];
+                $numeroDisLikes = $fila['unlikes'];
             }
 
             ?>
@@ -33,6 +47,8 @@
 
             <!-- Title -->
             <h1><?php echo $Titulo ?></h1>
+
+
 
             <!-- Author -->
             <p class="lead">
@@ -47,13 +63,34 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="imagenes/<?php echo $Imagen ?>" alt="">
+            <img class="img-responsive" src="/cms/imagenes/<?php echo $Imagen ?>" alt="">
 
             <hr>
 
             <!-- Post Content -->
             <p><?php echo $Contenido ?></p>
             <hr>
+            <?php if (iniciado()) : ?>
+                <div class="row">
+                    <div class="col">
+                        <button <?php if($gusto == 'meGusta'){ echo "disabled";} ;?> class="btn btn-primary" onclick="likes('meGusta')" style="font-size: 1.5em;" href="" name="meGusta" id="meGusta" type="button">
+                            <span class="glyphicon glyphicon-thumbs-up"></span> <?php echo $numeroLikes ?>
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="col">
+                        <button <?php if($gusto == 'noMeGusta'){echo 'disabled';} ?> class="btn btn-primary" onclick="likes('noMeGusta')" style="font-size: 1.5em;" href="" name="noMeGusta" id="noMeGusta" type="button">
+                            <span class="glyphicon glyphicon-thumbs-down"></span> <?php echo $numeroDisLikes ?>
+                        </button>
+                    </div>
+
+                </div>
+            <?php else : ?>
+                <div class="row">
+                    <h3>Debe iniciar Sesion para usar los likes</h3>
+                </div>
+            <?php endif ?>
+
 
             <!-- Blog Comments -->
 
@@ -62,19 +99,18 @@
                 $Autor = $_POST['autor'];
                 $Correo = $_POST['correo'];
                 $Comentario = $_POST['comentario'];
-                if(!empty($Autor) && !empty($Correo) && !empty($Comentario)){
+                if (!empty($Autor) && !empty($Correo) && !empty($Comentario)) {
                     $solicitud = mysqli_query($conexion, "INSERT INTO comentarios
                     (comentario_id_post,comentario_autor,comentario_correo,comentario_contenido,comentario_estado
                     ,comentario_fecha) 
                     VALUES ('$ID','$Autor','$Correo','$Comentario','aprobado',now()) ");
-                if (!$solicitud) {
-                    die(mysqli_error($conexion));
+                    if (!$solicitud) {
+                        die(mysqli_error($conexion));
+                    } else {
+                    }
                 } else {
+                    echo "<script>alert('Debe llenar los campos')</script>";
                 }
-                }else{
-                    echo "<script>alert('Debe llenar los campos')</script>";    
-                }
-               
             }
             ?>
 
@@ -132,6 +168,7 @@
 
         </div>
 
+
         <!-- Blog Sidebar Widgets Column -->
         <?php include 'include/BarraLateral.php' ?>
 
@@ -148,17 +185,34 @@
             </div>
         </div>
         <!-- /.row -->
+
+        <div id="demo"></div>
     </footer>
 
 </div>
+
 <!-- /.container -->
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<?php include 'include/PieDePagina.php' ?>
+<script>
+    function likes(criterio) {
+        var post = <?php echo $post_id ?>;
+        var usuario = 19;
+        var url = "/cms/likes.php";
+        var message = "post=" + post + "&usuario=" + usuario + "&criterio=" + criterio;
+        var xhttp = new XMLHttpRequest();
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById('demo').innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhttp.send(message);
+    };
+</script>
 </body>
 
 </html>

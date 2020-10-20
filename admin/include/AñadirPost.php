@@ -71,7 +71,7 @@
         $Etiquetas = escape($conexion,$_POST['post_etiquetas']);
         $Imagen = $_FILES['post_imagen']['name'];
         $ImagenTemporal = $_FILES['post_imagen']['tmp_name'];
-        $Contenido = escape($conexion,$_POST['post_contenido']);
+        $Contenido = escape($conexion, $_POST['post_contenido']);
 
         move_uploaded_file($ImagenTemporal, "../imagenes/$Imagen");
 

@@ -10,7 +10,7 @@ if (isset($_GET['post_id'])) {
     $Fecha = escape($conexion,$fila['post_fecha']);
     $Etiquetas = escape($conexion,$fila['post_etiquetas']);
     $ImagenProvisional = escape($conexion,$fila['post_imagen']);
-    $Contenido = escape($conexion,$fila['post_contenido']);
+    $Contenido = $fila['post_contenido'];
 }
 ?>
 <div id="mensaje" style="display: none;"   class="alert alert-success" role="alert">
@@ -79,7 +79,9 @@ if (isset($_GET['post_id'])) {
     </div>
     <div class="form-group">
         <label for="">Contenido</label>
-        <textarea name="post_contenido" class="form-control"><?php echo $Contenido ?></textarea>
+        <textarea name="post_contenido" class="form-control"><?php 
+        echo $Contenido;
+        ?></textarea>
 
     </div>
     <div class="form-group">

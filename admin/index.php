@@ -3,18 +3,23 @@
 <?php include 'functions.php' ?>;
 <div id="wrapper">
 
+
+    <?php 
+    if(!es_administrador($_SESSION['usuario_rol'])){
+        header("location: ../index.php");
+    }
+    ?>
+
+    
+
     <!-- Navigation -->
     <?php include 'include/BarraDeNavegacion.php' ?>
     <?php
-    $solicitudPost = mysqli_query($conexion, "SELECT * FROM post");
-    $solicitudComentarios = mysqli_query($conexion, "SELECT * FROM comentarios");
-    $solicitudUsuarios = mysqli_query($conexion, "SELECT * FROM usuarios");
-    $solicitudCategorias = mysqli_query($conexion, "SELECT * FROM categorias");
 
-    $Post = mysqli_num_rows($solicitudPost);
-    $Comentarios = mysqli_num_rows($solicitudComentarios);
-    $Usuarios = mysqli_num_rows($solicitudUsuarios);
-    $Categorias = mysqli_num_rows($solicitudCategorias);
+    $Post = Cantidad($conexion,'post');
+    $Comentarios = Cantidad($conexion,'comentarios');
+    $Usuarios = Cantidad($conexion,'usuarios');
+    $Categorias = Cantidad($conexion,'categorias');
     ?>
 
     <div id="page-wrapper">

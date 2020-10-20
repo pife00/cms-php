@@ -1,4 +1,5 @@
 <!-- Navigation -->
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -9,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Mi blog</a>
+            <a class="navbar-brand" href="/cms/index">Mi blog</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,19 +18,54 @@
                 <?php
                 include 'include/BaseDeDatos.php';
                 $resultado = mysqli_query($conexion, 'SELECT * FROM categorias');
-
-
                 while ($fila = mysqli_fetch_assoc($resultado)) {
+                    $id = $fila['categoria_id'];
                     $titulo = $fila['categoria_titulo'];
-                    echo "<li class='nav-item'><a href='#'>$titulo</a></li>";
+                    if (isset($_GET['categoria_id'])) {
+                        $id_categoria = $_GET['categoria_id'];
+                        if ($id == $_GET['categoria_id']) {
+                            echo " <li class='active nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                        } else {
+                            echo " <li  class='nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                        }
+                    } else {
+                        echo " <li class='nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                    }
                 }
                 ?>
-                <li><a href="admin">Administrador</a></li>
-                <li><a href="registro.php">Registro</a></li>
-                <li><a href="contacto.php">Contactos</a></li>
+
+                <?php if (iniciado()) : ?>
+                    <li><a href="/cms/admin">Administrador</a></li>
+                <?php else :  ?>
+                    <li><a href="/cms/login">Iniciar Sesion</a></li>
+                <?php endif ?>
+
+
+                <li><a href="/cms/registro">Registro</a></li>
+                <li><a href="/cms/contacto">Contactos</a></li>
+
+
             </ul>
+
+            <ul class='nav navbar-right top-nav'>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href='/cms/include/CerrarSesion.php'><i class='fa fa-fw fa-power-off'></i>
+                            <?php
+                            if (isset($_SESSION['usuario'])) {
+                                echo 'Cerrar Sesion';
+                            }
+                            ?>
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+
+
+
         </div>
         <!-- /.navbar-collapse -->
+
     </div>
     <!-- /.container -->
 </nav>

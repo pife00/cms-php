@@ -49,10 +49,12 @@
                             <tbody>
                                 <!---Tabla de Categorias--->
                                 <?php
-                                $Categorias = mysqli_query($conexion, 'SELECT * FROM categorias');
-                                while ($fila = mysqli_fetch_assoc($Categorias)) :
-                                    $ID = $fila['categoria_id'];
-                                    $Titulo = $fila['categoria_titulo'];
+                                $stmt = mysqli_prepare($conexion, 
+                                "SELECT categoria_id,categoria_titulo FROM categorias");
+                                mysqli_stmt_execute($stmt);
+                                mysqli_stmt_bind_result($stmt,$ID,$Titulo);
+                                while(mysqli_stmt_fetch($stmt)):
+                                    
                                 ?>
                                     <tr>
                                         <td><?php echo $ID ?></td>
