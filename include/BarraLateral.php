@@ -67,7 +67,7 @@
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         $ID = $fila['categoria_id'];
                         $titulo = $fila['categoria_titulo'];
-                        echo "<li class='nav-item'><a href='/cms/categoria/$ID'>$titulo</a></li>";
+                        echo "<li class='nav-item'><a href='categoria.php?id=$ID'>$titulo</a></li>";
                     }
                     ?>
              </div>
