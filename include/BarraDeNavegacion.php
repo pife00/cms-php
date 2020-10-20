@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/cms/index">Mi blog</a>
+            <a class="navbar-brand" href="index.php">Mi blog</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -24,25 +24,25 @@
                     if (isset($_GET['categoria_id'])) {
                         $id_categoria = $_GET['categoria_id'];
                         if ($id == $_GET['categoria_id']) {
-                            echo " <li class='active nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                            echo " <li class='active nav-item'><a href='categoria.php?id=$id'>$titulo</a></li>";
                         } else {
-                            echo " <li  class='nav-item'><a href='categoria/$id'>$titulo</a></li>";
+                            echo " <li  class='nav-item'><a href='categoria.php?id=$id'>$titulo</a></li>";
                         }
                     } else {
-                        echo " <li class='nav-item'><a href='categoria/$id'>$titulo</a></li>";
+                        echo " <li class='nav-item'><a href='categoria.php?id=$id'>$titulo</a></li>";
                     }
                 }
                 ?>
 
                 <?php if (iniciado()) : ?>
-                    <li><a href="admin">Administrador</a></li>
+                    <li><a href="admin/index.php">Administrador</a></li>
                 <?php else :  ?>
-                    <li><a href="login">Iniciar Sesion</a></li>
+                    <li><a href="login.php">Iniciar Sesion</a></li>
                 <?php endif ?>
 
 
-                <li><a href="registro">Registro</a></li>
-                <li><a href="contacto">Contactos</a></li>
+                <li><a href="registro.php">Registro</a></li>
+                <li><a href="contacto.php">Contactos</a></li>
 
 
             </ul>

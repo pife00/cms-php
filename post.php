@@ -11,8 +11,8 @@
         <div class="col-lg-8">
 
             <?php
-            if (isset($_GET['post_id'])) {
-                $ID = $_GET['post_id'];
+            if (isset($_GET['id'])) {
+                $ID = $_GET['id'];
                 $post_id = $ID;
                 $usuario = $_SESSION["usuario_id"];
                 echo $gusto = usuariolike($conexion, $post_id, $usuario);

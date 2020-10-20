@@ -46,7 +46,7 @@
                  <label for="">Contraseña</label>
                  <input name="contraseña" type="password" class="form-control">
              </div>
-             <a href="/cms/contraseña-olvidada">¿Olvido su contraseña?</a>
+             <a href="contraseña-olvidada.php">¿Olvido su contraseña?</a>
              <p></p>
              <button type="submit" name="UsuarioSesion" class="btn btn-primary">Enviar</button>
          </form>

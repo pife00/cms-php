@@ -12,8 +12,8 @@
         <div class="col-md-8">
             <?php
             include 'include/BaseDeDatos.php';
-            if (isset($_GET['categoria_id'])) :
-                $Busqueda = $_GET['categoria_id'];
+            if (isset($_GET['id'])) :
+                $Busqueda = $_GET['id'];
                 // $Busqueda = mysqli_real_escape_string($conexion, $Busqueda);
                 $stmt = mysqli_prepare(
                     $conexion,
