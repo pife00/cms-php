@@ -7,9 +7,9 @@ if (isset($_POST['UsuarioSesion'])) {
     $Usuario = $_POST['usuario'];
     $Contraseña = $_POST['contraseña'];
     if(IniciarSesion($conexion,$Usuario,$Contraseña)){
-        redireccion("/cms/admin");
+        redireccion("admin/index.php");
     }else{
-        redireccion("/cms/index");
+        redireccion("./index.php");
     }
 }
 ?>

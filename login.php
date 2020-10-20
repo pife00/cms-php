@@ -9,9 +9,9 @@ if (es_metodo('post')) {
 	$Usuario = $_POST['usuario'];
 	$Contraseña = $_POST['contraseña'];
 	if (IniciarSesion($conexion, $Usuario, $Contraseña)) {
-		redireccion("/cms/admin");
+		redireccion("admin/index.php");
 	} else {
-		redireccion("/cms/login");
+		redireccion("login.php");
 	}
 }
 ?>

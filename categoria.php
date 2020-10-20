@@ -44,7 +44,7 @@
                         </p>
                         <p><span class="glyphicon glyphicon-time"></span> <?php echo $PostFecha ?></p>
                         <hr>
-                        <img class="img-responsive" src="/cms/imagenes/<?php echo $PostImagen ?>" alt="">
+                        <img class="img-responsive" src="imagenes/<?php echo $PostImagen ?>" alt="">
                         <hr>
                         <p><?php echo $PostContenido ?></p>
                         <a class="btn btn-primary" href="#">Leer Mas <span class="glyphicon glyphicon-chevron-right"></span></a>

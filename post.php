@@ -11,8 +11,8 @@
         <div class="col-lg-8">
 
             <?php
-            if (isset($_GET['id'])) {
-                $ID = $_GET['id'];
+            if (isset($_GET['post_id'])) {
+                $ID = $_GET['post_id'];
                 $post_id = $ID;
                 $usuario = $_SESSION["usuario_id"];
                 echo $gusto = usuariolike($conexion, $post_id, $usuario);
@@ -63,7 +63,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src="/cms/imagenes/<?php echo $Imagen ?>" alt="">
+            <img class="img-responsive" src="imagenes/<?php echo $Imagen ?>" alt="">
 
             <hr>
 
