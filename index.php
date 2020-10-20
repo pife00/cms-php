@@ -43,7 +43,7 @@
                 <!-- First Blog Post -->
                 <?php
                 echo
-                    "<h2><a href='post.php?id=$PostID'>$PostTitulo</a></h2>";
+                    "<h2><a href='post.php?post_id=$PostID'>$PostTitulo</a></h2>";
 
                 ?>
                 <p class="lead">
