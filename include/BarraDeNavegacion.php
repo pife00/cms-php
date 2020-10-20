@@ -26,23 +26,23 @@
                         if ($id == $_GET['categoria_id']) {
                             echo " <li class='active nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
                         } else {
-                            echo " <li  class='nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                            echo " <li  class='nav-item'><a href='categoria/$id'>$titulo</a></li>";
                         }
                     } else {
-                        echo " <li class='nav-item'><a href='/cms/categoria/$id'>$titulo</a></li>";
+                        echo " <li class='nav-item'><a href='categoria/$id'>$titulo</a></li>";
                     }
                 }
                 ?>
 
                 <?php if (iniciado()) : ?>
-                    <li><a href="/cms/admin">Administrador</a></li>
+                    <li><a href="admin">Administrador</a></li>
                 <?php else :  ?>
-                    <li><a href="/cms/login">Iniciar Sesion</a></li>
+                    <li><a href="login">Iniciar Sesion</a></li>
                 <?php endif ?>
 
 
-                <li><a href="/cms/registro">Registro</a></li>
-                <li><a href="/cms/contacto">Contactos</a></li>
+                <li><a href="registro">Registro</a></li>
+                <li><a href="contacto">Contactos</a></li>
 
 
             </ul>
@@ -50,7 +50,7 @@
             <ul class='nav navbar-right top-nav'>
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href='/cms/include/CerrarSesion.php'><i class='fa fa-fw fa-power-off'></i>
+                        <a href='include/CerrarSesion.php'><i class='fa fa-fw fa-power-off'></i>
                             <?php
                             if (isset($_SESSION['usuario'])) {
                                 echo 'Cerrar Sesion';
