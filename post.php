@@ -14,8 +14,11 @@
             if (isset($_GET['post_id'])) {
                 $ID = $_GET['post_id'];
                 $post_id = $ID;
-                $usuario = $_SESSION["usuario_id"];
-                echo $gusto = usuariolike($conexion, $post_id, $usuario);
+                if(isset($_SESSION['usuario_id'])){
+                    $usuario = $_SESSION["usuario_id"];
+                    $gusto = usuariolike($conexion, $post_id, $usuario);
+                }
+                
                 
                 $solicitud = mysqli_query($conexion, "SELECT * FROM post WHERE post_id=$ID");
                 //Visitas

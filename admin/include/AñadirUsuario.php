@@ -48,7 +48,7 @@ if(isset($_POST['EnviarNuevoUsuario'])){
     $Apellido = mysqli_real_escape_string($conexion,$_POST['usuario_apellido']);
     $Correo = mysqli_real_escape_string($conexion,$_POST['usuario_correo']);
     $Imagen = $_FILES['usuario_imagen']['name'];
-    $ImagenTemporal = $_FILES['post_imagen']['tmp_name'];
+    $ImagenTemporal = $_FILES['usuario_imagen']['tmp_name'];
     $Rol =mysqli_real_escape_string($conexion,$_POST['usuario_rol']);
 
     move_uploaded_file($ImagenTemporal,"../imagenes/$Imagen");
@@ -63,7 +63,7 @@ if(isset($_POST['EnviarNuevoUsuario'])){
         die(mysqli_error($conexion));
     }else{
         header('Location:usuarios.php');
-    }
+    }  
 }
 ?>
 </form>
